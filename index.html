@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flip Calc</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="baidu-site-verification" content="pooshWAX2m" />
+	<link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="flip.css" rel="stylesheet">
+	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="flip.js"></script>
+</head>
+	<body>
+		<div class="container" id="main">
+			<div class="col-xs-12 col-sm-6">
+				<div class="board">
+					<div class="sizeInput">
+						<label for="#boardRow">行数：</label>
+						<input type="text" id="boardRow" value="5" />
+						<label for="#boardColumn">列数：</label>
+						<input type="text" id="boardColumn" value="5" />
+						<input type="button" value="确定" id="boardDraw" />
+					</div>
+					<div id="mainBoard">
+						<div class="bdRow" id="1">
+							<div class="bdGrid wall" id="1"></div>
+							<div class="bdGrid" id="2"></div>
+							<div class="bdGrid" id="3"></div>
+							<div class="bdGrid wall" id="4"></div>
+							<div class="bdGrid wall" id="5"></div>
+						</div>
+						<div class="bdRow" id="2">
+							<div class="bdGrid" id="1"></div>
+							<div class="bdGrid on" id="2"></div>
+							<div class="bdGrid" id="3"></div>
+							<div class="bdGrid wall" id="4"></div>
+							<div class="bdGrid wall" id="5"></div>
+						</div>
+						<div class="bdRow" id="3">
+							<div class="bdGrid" id="1"></div>
+							<div class="bdGrid" id="2"></div>
+							<div class="bdGrid" id="3"></div>
+							<div class="bdGrid" id="4"></div>
+							<div class="bdGrid on" id="5"></div>
+						</div>
+						<div class="bdRow" id="4">
+							<div class="bdGrid wall" id="1"></div>
+							<div class="bdGrid wall" id="2"></div>
+							<div class="bdGrid" id="3"></div>
+							<div class="bdGrid" id="4"></div>
+							<div class="bdGrid" id="5"></div>
+						</div>
+						<div class="bdRow" id="5">
+							<div class="bdGrid wall" id="1"></div>
+							<div class="bdGrid wall" id="2"></div>
+							<div class="bdGrid on" id="3"></div>
+							<div class="bdGrid" id="4"></div>
+							<div class="bdGrid wall" id="5"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="colors">
+						<div class="selector">
+							<div class="bdGrid wall"></div>
+						</div>
+						<div class="selector">
+							<div class="bdGrid selected"></div>
+						</div>
+						<div class="selector">
+							<div class="bdGrid on selected"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="Go">Go!</div>
+				</div>
+			</div>
+			<div class="col-xl-12 col-sm-6">
+				<div class="solution">
+					<div id="solBoard"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
