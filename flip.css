@@ -1,6 +1,6 @@
 * {margin: 0;padding: 0;}
 
-#mainBoard{
+#mainBoard,#solBoard{
     clear: both;
     float: left;
     padding: 8px;

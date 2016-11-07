@@ -5,7 +5,6 @@ $(document).ready(function(){
 	$('.selector').click(function(){
 		$('.selector>.bdGrid').removeClass('selected');
 		painterClass = $(this).children().attr('class');
-		console.log(painterClass);
 		$(this).children().addClass('selected');
 	});
 
@@ -27,14 +26,14 @@ $(document).ready(function(){
 		var gwidth = Math.floor(Math.min(530/bdcol-2,60));
 		var gheight = gwidth;
 
-		$('.bdRow').remove();
+		$('#mainBoard .bdRow').remove();
 
 		for (var i = 1; i <= bdrow; i++) {
 			var thisRow = $('<div></div>').addClass('bdRow').attr('id',i);
 			for (var j = 1; j <= bdcol; j++) {
 				var thisGrid = $('<div></div>').addClass('bdGrid').attr('id',j);
 				if (gwidth<60) {
-					thisGrid.css('width',gwidth)
+					thisGrid.css('width',gwidth).css('height',gheight);
 				}
 				thisGrid.appendTo(thisRow);
 			}
@@ -74,9 +73,8 @@ $(document).ready(function(){
 				solution[i][j] = 0;
 			}
 		}
-
-		//函数定义
-		function arrSum(arr) {
+		//计算
+		var arrSum = function (arr) {
   			var sum = 0;
   			for (var i = 0; i < arr.length; i++) {
     			if (typeof arr[i] == 'object') sum += arrSum(arr[i]);
@@ -85,45 +83,39 @@ $(document).ready(function(){
   			return sum;
 		}
 
-
-		function nextSol(arr) {
-			console.log(arr);
-			var ppp=arrSum(solution);
-			console.log(ppp);
-			var row = arr.length;
-			var col = arr[0].length;
-			var i = row-1, j = col-1;
+		var nextSol = function (arr) {
+			var arrx = arr.length -1;
+			var arry = arr[0].length -1;
 			var swapped = 0;
 			var count = 0;
-			var before;
+			var before = -1;
 			while ( swapped == 0 ){
-				if (arr[i][j] == 1) {
+				if (arr[arrx][arry] == 1) {
 					count++;
-					if (i ==0&&j==0 ) {return arr} else {
-						if ( j>0 ) { j=j-1 } else { i=i-1; j=col-1};
+					if (arrx ==0&&arry==0 ) {return arr} else {
+						if ( arry>0 ) { arry=arry-1 } else { arrx=arrx-1; arry=arr[0].length-1};
 						continue;
 					};
 				};
-				if (arr[i][j] == 0) {
-					if (i ==0&&j==0 ) {
+				if (arr[arrx][arry] == 0) {
+					if (arrx ==0&&arry==0 ) {
 						count++;
-						for (var m = 0; m < col; m++) {
-							for (var n = 0; n < col; n++) {
-								if (count>0) {arr[m][n]=1} else {arr[m][n]=0};
+						for (var m = 0; m < arr.length; m++) {
+							for (var n = 0; n < arr[0].length; n++) {
+								if (count>0) {arr[m][n] = 1} else {arr[m][n] = 0};
 								count--;
 							};
 						};
 						return arr;
 					} else {
-						if (j>0) { before = arr[i][j-1]} else {before = arr[i-1][col-1]};
+						if (arry>0) { before = arr[arrx][arry-1]} else {before = arr[arrx-1][arr[0].length-1]};
 						if (before==1) {
-							arr[i][j]=1;
-							if (j>0) { arr[i][j-1] = 0 } else { arr[i-1][col-1] = 0};
-							swapped = 1;
+							arr[arrx][arry]=1;
+							if (arry>0) { arr[arrx][arry-1] = 0 } else { arr[arrx-1][arr[0].length-1] = 0};
 							return arr;
 						};
 						if (before==0) {
-							if ( j>0 ) { j=j-1 } else { i=i-1; j=col-1};
+							if ( arry>0 ) { arry=arry-1 } else { arrx=arrx-1; arry=arr[0].length-1};
 							continue;
 						};
 					};
@@ -131,32 +123,64 @@ $(document).ready(function(){
 			};
 		};
 
-		function runGaming(board, solut){
-			var row = solut.length;
-			var col = solut[0].length;
-			for (var i = 0; i < row; i++) {
-				for (var j = 0; j< col; j++) {
-					if (board[i,j]!=-1) {
-						board[i,j]=1-solut[i,j]
-						if (i-1>=0){if (board[i-1,j]!=-1) {board[i-1,j]=1-solut[i-1,j]};};
-						if (j-1>=0){if (board[i,j-1]!=-1) {board[i,j-1]=1-solut[i,j-1]};};
-						if (i+1<=row){if (board[i+1,j]!=-1) {board[i+1,j]=1-solut[i+1,j]};};
-						if (j+1<=col){if (board[i,j+1]!=-1) {board[i,j+1]=1-solut[i,j+1]};};
-					};
+		var runGaming = function (board, solut){
+			var solx = solut.length;
+			var soly = solut[0].length;
+			for (var i = 0; i < solx; i++) {
+				for (var j = 0; j< soly; j++) {
+					if (solut[i][j]==1) { //five grid flip
+						if (board[i][j]!=-1) {
+							board[i][j]=1-board[i][j];
+							if (i>0) {if(board[i-1][j]!=-1){board[i-1][j]=1-board[i-1][j];};};
+							if (j>0) {if(board[i][j-1]!=-1){board[i][j-1]=1-board[i][j-1];};};
+							if (i<solx-1) {if(board[i+1][j]!=-1){board[i+1][j]=1-board[i+1][j];};};
+							if (j<soly-1) {if(board[i][j+1]!=-1){board[i][j+1]=1-board[i][j+1];};};
+						} else {return false};
+					} else { continue };
 				};
 			};
-			if (arrSum(board)==solved) { return true } else {return false}
+			if (arrSum(board)==solved||arrSum(solut)==solx*soly) { return true } else {return false}
 		};
 
-		//Go.
-		var xcount=0;
-		while (xcount < 30 && !runGaming(puzzle, solution)){
-			var result= runGaming(puzzle,solution);
-			console.log(result);
-			solution = nextSol(solution);
-			xcount++;
-		};
+		var a=[[1,0,0],[0,1,1]];
+		var b=[[1,1,0],[0,0,0]];
+		var c=[[1,0,0],[0,1,0]];
 
-	})
+		var avb=runGaming(a,b);
+		var avc=runGaming(a,c);
+
+		console.log(a,b,c);
+		console.log(avb);
+		console.log(avc);
+
+		/*
+		
+		do {
+			solution=nextSol(solution);
+		}while(!runGaming(puzzle,solution));
+
+		//绘制解板
+		var solrow = solution.length;
+		var solcol = solution[0].length;
+		var gwidth = Math.floor(Math.min(530/solcol-2,60));
+		var gheight = gwidth;
+
+		$('#solBoard .bdRow').remove();
+
+		for (var i = 1; i <= solrow; i++) {
+			var thisRow = $('<div></div>').addClass('bdRow').attr('id',i);
+			for (var j = 1; j <= solcol; j++) {
+				var thisGrid = $('<div></div>').addClass('bdGrid').attr('id',j);
+				if (solution[i-1][j-1]==1) {thisGrid.addClass('click')};
+				if (gwidth<60) {
+					thisGrid.css('width',gwidth).css('height',gheight);
+				}
+				thisGrid.appendTo(thisRow);
+			}
+			thisRow.appendTo('#solBoard');
+		}
+		console.log(solution);
+		*/
+	});
 
 });
