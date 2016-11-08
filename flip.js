@@ -174,6 +174,8 @@ $(document).ready(function(){
 			var string=JSON.stringify(solution);
 		}while(!runGaming(puzzle,solution));
 
+		$('#progress').text('按绿色格子依次点击 Click as the green grids show.')
+
 		//绘制解板
 		var solrow = solution.length;
 		var solcol = solution[0].length;

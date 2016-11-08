@@ -15,7 +15,7 @@
 }
 .bdGrid {
     position: relative;
-    border: 1px solid #666;
+    border: 1px solid #ccc;
     float: left;
     margin: 2px;
     width: 60px;
@@ -27,18 +27,19 @@
 }
 
 .bdGrid.wall {
-    background-color: #666;
+    background-color: #3cf;
+    box-shadow: 4px 4px 4px #19f inset;
 }
 
-.bdGrid.on {
-    background-color: #6cf;
-    border: 1px solid #39f;
-    box-shadow: 0px 0px 4px #6cf;
-}
 .bdGrid.click {
-    background-color: #f90;
+    background-color: #3c6;
+    border: 1px solid #093;
+    box-shadow: 0px 0px 4px #3c6;
+}
+.bdGrid.on {
+    background-color: #f53;
     border: 1px solid #f73;
-    box-shadow: 0px 0px 4px #f90;
+    box-shadow: 0px 0px 2px #f53;
 }
 
 .bdGrid.selected::after{
