@@ -1,5 +1,9 @@
 * {margin: 0;padding: 0;}
 
+.container{
+    margin-top: 20px;
+}
+
 #mainBoard,#solBoard{
     clear: both;
     float: left;
@@ -17,13 +21,14 @@
     position: relative;
     border: 1px solid #ccc;
     float: left;
-    margin: 2px;
+    margin: 1px;
     width: 60px;
     height: 60px;
     border-radius: 2px;
     box-shadow: 0px 0px 4px #ccc;
     background-color: #fff;
     cursor: pointer;
+    padding: 2px 0 0 4px;
 }
 
 .bdGrid.wall {

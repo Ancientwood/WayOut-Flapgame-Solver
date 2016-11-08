@@ -17,11 +17,13 @@
 			<div class="col-xs-12 col-sm-6">
 				<div class="board">
 					<div class="sizeInput">
-						<label for="#boardRow">行数：</label>
+						<label for="#boardRow">行数 Rows：</label>
 						<input type="text" id="boardRow" value="5" />
-						<label for="#boardColumn">列数：</label>
+						<br />
+						<label for="#boardColumn">列数 Columns：</label>
 						<input type="text" id="boardColumn" value="5" />
-						<input type="button" value="确定" id="boardDraw" />
+						<br />
+						<input type="button" value="重绘棋盘 / reDraw" id="boardDraw" class="btn btn-primary"/>
 					</div>
 					<div id="mainBoard">
 						<div class="bdRow" id="1">
@@ -63,13 +65,13 @@
 					<div class="clear"></div>
 					<div class="colors">
 						<div class="selector">
-							<div class="bdGrid wall selected"></div>
+							<div class="bdGrid wall selected">Wall</div>
 						</div>
 						<div class="selector">
-							<div class="bdGrid"></div>
+							<div class="bdGrid">Normal</div>
 						</div>
 						<div class="selector">
-							<div class="bdGrid on"></div>
+							<div class="bdGrid on">On</div>
 						</div>
 					</div>
 					<div class="clear"></div>
