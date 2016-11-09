@@ -27,43 +27,43 @@
 					</div>
 					<div id="mainBoard">
 						<div class="bdRow" id="1">
-							<div class="bdGrid on" id="1"></div>
-							<div class="bdGrid on" id="2"></div>
-							<div class="bdGrid" id="3"></div>
-							<div class="bdGrid" id="4"></div>
-							<div class="bdGrid" id="5"></div>
+							<div class="bdGrid wall" id="1"></div>
+							<div class="bdGrid wall" id="2"></div>
+							<div class="bdGrid on" id="3"></div>
+							<div class="bdGrid wall" id="4"></div>
+							<div class="bdGrid wall" id="5"></div>
 						</div>
 						<div class="bdRow" id="2">
 							<div class="bdGrid" id="1"></div>
 							<div class="bdGrid" id="2"></div>
-							<div class="bdGrid on" id="3"></div>
-							<div class="bdGrid wall" id="4"></div>
-							<div class="bdGrid on" id="5"></div>
+							<div class="bdGrid vlink on" id="3"></div>
+							<div class="bdGrid" id="4"></div>
+							<div class="bdGrid" id="5"></div>
 						</div>
 						<div class="bdRow" id="3">
-							<div class="bdGrid on" id="1"></div>
-							<div class="bdGrid on" id="2"></div>
-							<div class="bdGrid wall" id="3"></div>
-							<div class="bdGrid on" id="4"></div>
-							<div class="bdGrid on" id="5"></div>
+							<div class="bdGrid" id="1"></div>
+							<div class="bdGrid wall" id="2"></div>
+							<div class="bdGrid on" id="3"></div>
+							<div class="bdGrid wall" id="4"></div>
+							<div class="bdGrid" id="5"></div>
 						</div>
 						<div class="bdRow" id="4">
 							<div class="bdGrid" id="1"></div>
-							<div class="bdGrid wall" id="2"></div>
-							<div class="bdGrid" id="3"></div>
+							<div class="bdGrid on" id="2"></div>
+							<div class="bdGrid hlink on" id="3"></div>
 							<div class="bdGrid on" id="4"></div>
-							<div class="bdGrid on" id="5"></div>
+							<div class="bdGrid" id="5"></div>
 						</div>
 						<div class="bdRow" id="5">
-							<div class="bdGrid on" id="1"></div>
-							<div class="bdGrid on" id="2"></div>
+							<div class="bdGrid wall" id="1"></div>
+							<div class="bdGrid wall" id="2"></div>
 							<div class="bdGrid" id="3"></div>
-							<div class="bdGrid on" id="4"></div>
-							<div class="bdGrid on" id="5"></div>
+							<div class="bdGrid wall" id="4"></div>
+							<div class="bdGrid wall" id="5"></div>
 						</div>
 					</div>
-					<div class="clear"></div>
-					<div class="colors">
+					<div class="clear">Type: Click again to toggle On/Off status.</div>
+					<div class="blocks">
 						<div class="selector">
 							<div class="bdGrid wall selected">Hole</div>
 						</div>
@@ -71,7 +71,19 @@
 							<div class="bdGrid">Normal</div>
 						</div>
 						<div class="selector">
+							<div class="bdGrid vlink">VLink</div>
+						</div>
+						<div class="selector">
+							<div class="bdGrid hlink">HLink</div>
+						</div>
+					</div>
+					<div class="clear">On / Off</div>
+					<div class="switchers">
+						<div class="selector">
 							<div class="bdGrid on">On</div>
+						</div>
+						<div class="selector">
+							<div class="bdGrid">Off</div>
 						</div>
 					</div>
 					<div class="clear"></div>

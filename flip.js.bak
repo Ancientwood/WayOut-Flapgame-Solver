@@ -72,11 +72,7 @@ $(document).ready(function(){
 		for (var i = 0; i <= bdrow-1; i++) {
 			puzzle[i] = new Array(bdcol);
 			solution[i] = new Array(bdcol);
-			for (var j = 0; j <= bdcol-1; j++) {
-				puzzle[i][j] = {};
-			}
 		}
-
 		$('#mainBoard .bdRow').each(function(){
 			var x=$(this).attr('id');
 			$(this).find('.bdGrid').each(function(){

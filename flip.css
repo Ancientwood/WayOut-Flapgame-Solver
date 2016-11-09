@@ -17,7 +17,7 @@
 .bdRow {
     position: relative;
 }
-.bdGrid {
+.bdGrid, .bdGrid.normal {
     position: relative;
     border: 1px solid #ccc;
     float: left;
@@ -25,26 +25,48 @@
     width: 60px;
     height: 60px;
     border-radius: 2px;
-    box-shadow: 0px 0px 4px #ccc;
+    box-shadow: 1px 1px 4px #ccc;
     background-color: #fff;
     cursor: pointer;
     padding: 2px 0 0 4px;
 }
 
 .bdGrid.wall {
-    background-color: #3cf;
-    box-shadow: 4px 4px 4px #19f inset;
+    background-color: #dedede;
+    box-shadow: 4px 8px 4px #b6b6b6 inset;
 }
 
 .bdGrid.click {
     background-color: #3c6;
     border: 1px solid #093;
-    box-shadow: 0px 0px 4px #3c6;
+    box-shadow: 0px 0px 2px #3c6;
 }
 .bdGrid.on {
-    background-color: #f53;
-    border: 1px solid #f73;
-    box-shadow: 0px 0px 2px #f53;
+    background-color: #6cf;
+    border: 1px solid #39f;
+    box-shadow: 1px 1px 1px #6cf;
+}
+
+.bdGrid.vlink:before{
+    font-family:FontAwesome;
+    font-size: 24px;
+    content: "\f07d";
+    top: 16px;
+    left: 24px;
+    position: absolute;
+    color: #ff0;
+    text-shadow: 2px 0px #333,0px 2px #333,-2px 0px #333,0px -2px #333;
+}
+
+.bdGrid.hlink:before{
+    font-family:FontAwesome;
+    font-size: 24px;
+    content: "\f07e";
+    top: 16px;
+    left: 18px;
+    position: absolute;
+    color: #ff0;
+    text-shadow: 2px 0px #333,0px 2px #333,-2px 0px #333,0px -2px #333;
 }
 
 .bdGrid.selected::after{
