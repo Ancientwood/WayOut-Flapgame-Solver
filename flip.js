@@ -139,19 +139,10 @@ $(document).ready(function(){
 			};
 		};
 
-		//计算
-		var flip = function(board,s){
-			var x= Math.ceil(s / bdrow) - 1;
-			var y= s - bdcol * x -1;
-			if (board[x][y].gridtype == 'wall') {return 0};
-			var gcount = 0;
-			board[x][y].group.forEach(function(e){
-				if (board[e[0]][e[1]].status) {gcount--}else{gcount++};
-				board[e[0]][e[1]].status = 1 - board[e[0]][e[1]].status
-			});
-			return gcount;
-		};
+		var puzzleflat=JSON.stringify(puzzle);
+		console.log(puzzleflat);
 
+		//计算
 		var nextSol = function(arr,max){
 			if (arr.length>=max) {return false;};
 			if (arr.length==0) {
@@ -172,8 +163,10 @@ $(document).ready(function(){
 			var board = JSON.parse(JSON.stringify(puzzle));
 			for (var i = 0; i <solstring.length; i++) {
 				var s = flipable[solstring[i]-1];
-				var x= Math.ceil(s / bdrow) - 1;
+				var x= Math.ceil(s / bdcol) - 1;
 				var y= s - bdcol * x -1;
+				console.log (s,x,y);
+				console.log (bdrow,bdcol);
 				board[x][y].group.forEach(function(e){
 					if (board[e[0]][e[1]].status) {ons--}else{ons++};
 					board[e[0]][e[1]].status = 1 - board[e[0]][e[1]].status
@@ -183,7 +176,7 @@ $(document).ready(function(){
 			return ons;
 		}
 		var solving = solved;
-		while(solstring.length<4 && solving > 0){
+		while(solstring.length<flipable.length && solving > 0){
 			nextSol(solstring,flipable.length);
 			var solving = gaming(puzzle,solstring,solved);
 		};
