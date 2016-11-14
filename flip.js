@@ -57,8 +57,24 @@ $(document).ready(function(){
 				thisGrid.appendTo(thisRow);
 			}
 			thisRow.appendTo('#mainBoard');
-		}
+		};
+
+		$('#solBoard .bdRow').remove();
+
+		for (var i = 1; i <= bdrow; i++) {
+			var thisRow = $('<div></div>').addClass('bdRow').attr('id',i);
+			for (var j = 1; j <= bdcol; j++) {
+				var thisGrid = $('<div></div>').addClass('bdGrid').attr('id',j);
+				if (gwidth<60) {
+					thisGrid.css('width',gwidth).css('height',gheight);
+				}
+				thisGrid.appendTo(thisRow);
+			}
+			thisRow.appendTo('#solBoard');
+		};
 	});
+
+
 
 	//Go.
 	$('#Go').click(function(){
@@ -66,20 +82,20 @@ $(document).ready(function(){
 		var boardSize = $('#mainBoard .bdGrid').length;
 		var bdrow = $('#mainBoard .bdRow').length;
 		var bdcol = boardSize / bdrow;
-		var puzzle = new Array(bdrow);
+		var puzzle = new Object();
+		puzzle.grid = new Array(bdrow);
 		var solution = new Array(bdrow);
-		var walls = [], flipable=[], solstring = [];
-		var solved = 0;
 		for (var i = 0; i <= bdrow-1; i++) {
-			puzzle[i] = new Array(bdcol);
+			puzzle.grid[i] = new Array(bdcol);0
 			solution[i] = new Array(bdcol);
 			for (var j = 0; j <= bdcol-1; j++) {
-				puzzle[i][j] = {};
+				puzzle.grid[i][j] = {};
 				solution[i][j] = 0;
 			};
 		};
 
 		//棋盘读取
+		/*
 		$('#mainBoard .bdRow').each(function(){
 			var x=$(this).attr('id')-1;
 			$(this).find('.bdGrid').each(function(){
@@ -181,8 +197,6 @@ $(document).ready(function(){
 			var solving = gaming(puzzle,solstring,solved);
 		};
 
-		$('#progress').text('按绿色格子依次点击 Click as the green grids show.')
-
 		for (var i = solstring.length - 1; i >= 0; i--) {
 			var s = flipable[solstring[i]-1];
 			var x= Math.ceil(s / bdrow) - 1;
@@ -192,21 +206,7 @@ $(document).ready(function(){
 
 		var gwidth = Math.floor(Math.min(530/bdcol-2,60));
 		var gheight = gwidth;
-
-		$('#solBoard .bdRow').remove();
-
-		for (var i = 1; i <= bdrow; i++) {
-			var thisRow = $('<div></div>').addClass('bdRow').attr('id',i);
-			for (var j = 1; j <= bdcol; j++) {
-				var thisGrid = $('<div></div>').addClass('bdGrid').attr('id',j);
-				if (solution[i-1][j-1]==1) {thisGrid.addClass('click')};
-				if (gwidth<60) {
-					thisGrid.css('width',gwidth).css('height',gheight);
-				}
-				thisGrid.appendTo(thisRow);
-			}
-			thisRow.appendTo('#solBoard');
-		};
+		*/
 	});
 
 });
